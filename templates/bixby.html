@@ -1,0 +1,9 @@
+<h2>🤖 Ask Bixby</h2>
+<form method="POST">
+  Question: <input type="text" name="query">
+  <button type="submit">Ask</button>
+</form>
+{% if response %}
+  <p>Bixby says: {{ response }}</p>
+{% endif %}
+<a href="/">← Back</a>
