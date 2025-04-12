@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secure Trade Hub</title>
+  <style>
+    body { font-family: sans-serif; background-color: #eef; text-align: center; }
+    .form-group { margin: 15px; }
+    input { padding: 8px; width: 200px; }
+    button { padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 5px; }
+    .back { margin-top: 30px; display: block; }
+  </style>
+</head>
+<body>
+  <h1>💹 Secure Trade Hub</h1>
+  <form method="post">
+    <div class="form-group">
+      <input name="buyer" placeholder="Buyer Company" required />
+    </div>
+    <div class="form-group">
+      <input name="seller" placeholder="Seller Company" required />
+    </div>
+    <div class="form-group">
+      <input name="item" placeholder="Item/Service" required />
+    </div>
+    <button type="submit">Send Secure Trade</button>
+  </form>
+  {% if result %}
+    <p style="margin-top: 20px;">{{ result }}</p>
+  {% endif %}
+  <a class="back" href="/">← Back to Home</a>
+</body>
+</html>

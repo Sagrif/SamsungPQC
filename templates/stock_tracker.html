@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>📈 Stock Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: var(--bg, #f1f1f1);
+      color: var(--fg, #000);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    canvas {
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .back { margin-top: 20px; display: block; }
+    .toggle-dark {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDark()">🌙</button>
+  <h1>📈 Stock Tracker</h1>
+  <canvas id="stockChart"></canvas>
+  <a class="back" href="/">← Back to Home</a>
+
+  <script>
+    const ctx = document.getElementById('stockChart').getContext('2d');
+    const labels = Array.from({ length: 15 }, (_, i) => `T-${14 - i}`);
+
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          { label: 'Apple', borderColor: '#ff3e3e', data: [], fill: false },
+          { label: 'Amazon', borderColor: '#ffa500', data: [], fill: false },
+          { label: 'Samsung', borderColor: '#4285f4', data: [], fill: false }
+        ]
+      },
+      options: {
+        responsive: true,
+        animation: false,
+        scales: { y: { beginAtZero: false } }
+      }
+    });
+
+    async function updateChart() {
+      const res = await fetch('/api/stock_data');
+      const data = await res.json();
+      chart.data.datasets.forEach(ds => {
+        ds.data = data[ds.label];
+      });
+      chart.update();
+    }
+
+    setInterval(updateChart, 2000);
+
+    function toggleDark() {
+      const isDark = document.body.style.getPropertyValue('--bg') === '#121212';
+      document.body.style.setProperty('--bg', isDark ? '#f1f1f1' : '#121212');
+      document.body.style.setProperty('--fg', isDark ? '#000000' : '#ffffff');
+    }
+  </script>
+</body>
+</html>

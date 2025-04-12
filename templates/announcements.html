@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Announcements Center</title>
+  <style>
+    body { font-family: sans-serif; background-color: #fff8e1; text-align: center; }
+    textarea { width: 60%; padding: 10px; margin-top: 10px; }
+    button { margin-top: 10px; padding: 10px 20px; background-color: #ffa000; color: white; border: none; border-radius: 5px; }
+    .ann-list { margin-top: 30px; }
+    .ann-item { background: white; margin: 10px auto; padding: 10px; border-radius: 5px; width: 60%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .back { margin-top: 30px; display: block; }
+  </style>
+</head>
+<body>
+  <h1>📢 Internal Announcements</h1>
+  <form method="post">
+    <textarea name="announcement" placeholder="Write a secure memo or update..." rows="3"></textarea><br>
+    <button type="submit">Post</button>
+  </form>
+  <div class="ann-list">
+    {% for ann in announcements %}
+      <div class="ann-item">{{ ann }}</div>
+    {% endfor %}
+  </div>
+  <a class="back" href="/">← Back to Home</a>
+</body>
+</html>
