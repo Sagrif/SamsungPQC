@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html>
-<head><title>Samsung Workspace</title></head>
+<head>
+  <title>Samsung Super App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 40px;
+    }
+    .app-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 30px;
+    }
+    .app-icon {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      width: 120px;
+      height: 120px;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      transition: transform 0.2s;
+    }
+    .app-icon:hover {
+      transform: scale(1.05);
+      background-color: #e8f0fe;
+    }
+    .app-icon img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
 <body>
-  <h1>🔐 Samsung Workspace Super App</h1>
-  <ul>
-    <li><a href="/messaging">Secure Messaging</a></li>
-    <li><a href="/bixby">Ask Bixby</a></li>
-    <li><a href="/dashboard">Security Dashboard</a></li>
-  </ul>
+  <h1>Samsung Super App</h1>
+  <div class="app-grid">
+    <a href="/messaging" class="app-icon">
+      <img src="https://img.icons8.com/fluency/48/chat--v1.png" alt="Messaging">
+      <div>Messaging</div>
+    </a>
+    <a href="/bixby" class="app-icon">
+      <img src="https://img.icons8.com/fluency/48/robot-2.png" alt="Bixby AI">
+      <div>Bixby AI</div>
+    </a>
+    <a href="/dashboard" class="app-icon">
+      <img src="https://img.icons8.com/fluency/48/security-checked.png" alt="Dashboard">
+      <div>Dashboard</div>
+    </a>
+  </div>
 </body>
 </html>
+
