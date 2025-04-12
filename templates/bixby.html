@@ -5,51 +5,87 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #f1f1f1;
+      background-color: #f0f8ff;
       text-align: center;
     }
-    .container {
-      margin-top: 50px;
-    }
-    input[type="text"] {
+    input {
       width: 60%;
       padding: 10px;
-      margin-top: 10px;
+      margin-top: 20px;
     }
     button {
       padding: 10px 20px;
       margin-top: 10px;
-      background-color: #34a853;
+      background-color: #6200ea;
       color: white;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
     }
     .response {
-      margin-top: 20px;
-      font-style: italic;
+      margin-top: 30px;
+      background-color: white;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .examples {
+      margin-top: 30px;
+      padding: 20px;
+      background: #ffffffaa;
+      display: inline-block;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: left;
+      font-size: 16px;
+    }
+    .examples ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .examples li::before {
+      content: "🤔 ";
     }
     .back {
-      margin-top: 20px;
       display: block;
-      color: #34a853;
+      margin-top: 30px;
+      color: #6200ea;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🤖 Bixby AI Assistant</h1>
-    <form method="post">
-      <input type="text" name="query" placeholder="Ask Bixby something..." />
-      <br><button type="submit">Ask</button>
-    </form>
-    {% if response %}
-      <div class="response">
-        <strong>Response:</strong> {{ response }}
-      </div>
-    {% endif %}
-    <a class="back" href="/">← Back to Home</a>
+  <h1>🤖 Bixby AI Assistant</h1>
+
+  <form method="post">
+    <input name="query" type="text" placeholder="Ask me something..." required><br>
+    <button type="submit">Ask</button>
+  </form>
+
+  <div class="examples">
+    <h3>What can you ask me?</h3>
+    <ul>
+      <li>Schedule a meeting for tomorrow</li>
+      <li>What's the weather like?</li>
+      <li>Draft an email to my team</li>
+      <li>Set a reminder for 3 PM</li>
+      <li>Tell me a joke</li>
+      <li>What time is it?</li>
+      <li>What is the Super App?</li>
+      <li>How does secure messaging work?</li>
+      <li>Explain Trade Hub features</li>
+      <li>What tools help governments communicate?</li>
+    </ul>
   </div>
+
+  {% if response %}
+    <div class="response">
+      <strong>Answer:</strong><br>
+      {{ response }}
+    </div>
+  {% endif %}
+
+  <a class="back" href="/">← Back to Home</a>
 </body>
 </html>
-<!--test123-->
