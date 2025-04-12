@@ -11,7 +11,7 @@
     .container {
       margin-top: 50px;
     }
-    textarea, input[type="text"] {
+    input, textarea {
       width: 60%;
       padding: 10px;
       margin-top: 10px;
@@ -23,6 +23,10 @@
       color: white;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
+    }
+    .delete-all {
+      background-color: #d32f2f;
     }
     .back {
       margin-top: 20px;
@@ -30,17 +34,45 @@
       color: #4285f4;
       text-decoration: none;
     }
+    .message-list {
+      margin-top: 30px;
+    }
+    .message-item {
+      background: white;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 5px;
+      width: 60%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: left;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>📨 Messaging App</h1>
     <form method="post">
-      <textarea name="message" placeholder="Type your message here..." rows="4"></textarea><br>
+      <input name="to" type="text" placeholder="Send To (e.g., Alice)" required><br>
+      <textarea name="message" placeholder="Type your message..." rows="3" required></textarea><br>
       <button type="submit">Send</button>
     </form>
+
+    {% if messages %}
+    <form method="post" action="/delete_all_messages" onsubmit="return confirm('Delete all messages?');">
+      <button type="submit" class="delete-all">🗑️ Delete All Messages</button>
+    </form>
+    {% endif %}
+
+    <div class="message-list">
+      {% for msg in messages %}
+        <div class="message-item">
+          <strong>To:</strong> {{ msg.to }}<br>
+          <strong>Message:</strong> {{ msg.msg }}
+        </div>
+      {% endfor %}
+    </div>
+
     <a class="back" href="/">← Back to Home</a>
   </div>
 </body>
 </html>
-<!--test123-->

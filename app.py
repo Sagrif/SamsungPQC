@@ -3,13 +3,13 @@ import os
 import json
 import time
 import math
-from services.messaging import send_secure_message
+from services.messaging import send_secure_message, get_messages, delete_all_messages
 from services.ai_assistant import ask_bixby
 from dashboard.security import get_security_info
 
 app = Flask(__name__)
 
-# Simulated Smart Stock Predictions
+# Simulated Stock Prediction Setup
 stock_history = {
     "Apple": [],
     "Amazon": [],
@@ -22,7 +22,6 @@ def generate_smart_price(company, t):
         "Amazon": 120,
         "Samsung": 90
     }[company]
-
     if company == "Apple":
         return round(base + 0.5 * t + math.sin(t / 2) * 2, 2)
     elif company == "Amazon":
@@ -51,7 +50,14 @@ def messaging():
         msg = request.form["message"]
         send_secure_message(to, msg)
         return redirect(url_for("messaging"))
-    return render_template("messaging.html")
+
+    messages = get_messages()
+    return render_template("messaging.html", messages=messages)
+
+@app.route("/delete_all_messages", methods=["POST"])
+def delete_all_messages_route():
+    delete_all_messages()
+    return redirect(url_for("messaging"))
 
 @app.route("/bixby", methods=["GET", "POST"])
 def bixby():
@@ -74,8 +80,12 @@ def announcements():
             announcements = json.load(f)
 
     if request.method == "POST":
-        new_announcement = request.form["announcement"]
-        announcements.insert(0, new_announcement)
+        if "announcement" in request.form:
+            new_announcement = request.form["announcement"]
+            announcements.insert(0, new_announcement)
+        elif "delete" in request.form:
+            announcements = []
+
         with open("data/announcements.json", "w") as f:
             json.dump(announcements, f, indent=2)
 
