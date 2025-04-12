@@ -1,9 +1,54 @@
-<h2>🤖 Ask Bixby</h2>
-<form method="POST">
-  Question: <input type="text" name="query">
-  <button type="submit">Ask</button>
-</form>
-{% if response %}
-  <p>Bixby says: {{ response }}</p>
-{% endif %}
-<a href="/">← Back</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bixby AI</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #34a853;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .response {
+      margin-top: 20px;
+      font-style: italic;
+    }
+    .back {
+      margin-top: 20px;
+      display: block;
+      color: #34a853;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 Bixby AI Assistant</h1>
+    <form method="post">
+      <input type="text" name="query" placeholder="Ask Bixby something..." />
+      <br><button type="submit">Ask</button>
+    </form>
+    {% if response %}
+      <div class="response">
+        <strong>Response:</strong> {{ response }}
+      </div>
+    {% endif %}
+    <a class="back" href="/">← Back to Home</a>
+  </div>
+</body>
+</html>

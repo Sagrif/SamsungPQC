@@ -1,7 +1,39 @@
-<h2>🔐 Security Dashboard</h2>
-<ul>
-  {% for item in data %}
-    <li>{{ item }}</li>
-  {% endfor %}
-</ul>
-<a href="/">← Back</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Security Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .status-box {
+      display: inline-block;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .back {
+      margin-top: 30px;
+      display: block;
+      color: #ea4335;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Security Dashboard</h1>
+    <div class="status-box">
+      <p><strong>Status:</strong> {{ status }}</p>
+    </div>
+    <a class="back" href="/">← Back to Home</a>
+  </div>
+</body>
+</html>

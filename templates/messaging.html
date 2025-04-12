@@ -1,7 +1,45 @@
-<h2>📨 Secure Messaging</h2>
-<form method="POST">
-  To: <input type="text" name="to"><br>
-  Message: <input type="text" name="message"><br>
-  <button type="submit">Send</button>
-</form>
-<a href="/">← Back</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Messaging</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    textarea, input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .back {
+      margin-top: 20px;
+      display: block;
+      color: #4285f4;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📨 Messaging App</h1>
+    <form method="post">
+      <textarea name="message" placeholder="Type your message here..." rows="4"></textarea><br>
+      <button type="submit">Send</button>
+    </form>
+    <a class="back" href="/">← Back to Home</a>
+  </div>
+</body>
+</html>
